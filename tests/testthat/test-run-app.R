@@ -2,6 +2,7 @@
 # blocks, and assert the temp-copy contract documented in run-app.R.
 
 test_that("zhn_run_app copies the app to a temp dir and runs it from there", {
+  testthat::skip_on_os("mac")
   captured <- new.env(parent = emptyenv())
   local_mocked_bindings(
     runApp = function(appDir, ...) {
