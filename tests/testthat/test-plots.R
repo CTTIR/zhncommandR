@@ -84,6 +84,7 @@ test_that("KM y-scales build", {
 
 test_that("KM export composite writes non-empty PNG and PDF", {
   skip_on_cran()
+  skip_on_os("mac")  # grid text rendering is unstable on the macOS CI runner
   skip_if_not_installed("ggsurvfit")
   skip_if_not_installed("ragg")
   co <- zhn_read_cohort(zhn_example_path(), verbose = FALSE)
@@ -99,6 +100,7 @@ test_that("KM export composite writes non-empty PNG and PDF", {
 test_that("KM curve + risk table form one aligned composite that renders", {
   skip_if_not_installed("ggsurvfit")
   skip_on_cran()
+  skip_on_os("mac")  # renders to a device; grid text unstable on macOS runner
   co <- zhn_read_cohort(zhn_example_path(), verbose = FALSE)
   # worst case for misalignment: grouped, 3-row risk table, legend on.
   p <- zhn_plot_km(co, "os", "death_event", group_col = "geschlecht",
@@ -125,6 +127,7 @@ test_that("KM guards: all-NA event and non-numeric time raise conditions", {
 
 test_that("zhn_save_plot writes non-empty PNG (600 dpi) and PDF", {
   skip_on_cran()
+  skip_on_os("mac")  # grid text rendering is unstable on the macOS CI runner
   skip_if_not_installed("ragg")
   p <- ggplot2::ggplot(mtcars, ggplot2::aes(factor(cyl))) +
     ggplot2::geom_bar(fill = zhn_pal$accent) +
