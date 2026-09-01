@@ -59,4 +59,4 @@ Suggests:
 VignetteBuilder: knitr
 Config/testthat/edition: 3
 Config/Needs/website: r-lib/pkgdown, CTTIR/themakR
-Config/roxygen2/version: 8.0.0
+Config/roxygen2/version: 8.1.0

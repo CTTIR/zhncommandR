@@ -39,5 +39,7 @@ importFrom(rlang,.data)
 importFrom(scales,percent)
 importFrom(stats,setNames)
 importFrom(survival,survfit)
-importFrom(utils,read.csv)
-importFrom(utils,write.csv)
+importFrom(utils,
+  read.csv,
+  write.csv
+)
