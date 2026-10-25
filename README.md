@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file. -->
 
-# zhncommandR <a href="https://cttir.github.io/zhncommandR/"><img src="man/figures/logo.png" align="right" height="139" alt="zhncommandR hex logo" /></a>
+# zhncommandR <a href="https://cttir.github.io/zhncommandR/"><img src="man/figures/logo.png" align="right" width="120" height="139" alt="zhncommandR hex logo" /></a>
 
 <!-- badges: start -->
 
@@ -135,3 +135,7 @@ must be reviewed and revised before inclusion, and references must be verified
 against their DOI, arXiv ID or ISBN.
 
 Local software setup: vLLM with Python/PyTorch, plus R and RStudio.
+
+## Branding
+
+Editable R artwork and regeneration instructions are in [tools/branding](https://github.com/CTTIR/zhncommandR/blob/main/tools/branding/README.md).
