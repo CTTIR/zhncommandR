@@ -525,13 +525,28 @@ parse_cytogenetics_data <- function(df, remove_negative = TRUE) {
 # -------------------------------------------------------------
 # 3) UI
 # -------------------------------------------------------------
+# Resolve branding from this standalone application's source directory.
+.brand_source <- tryCatch(sys.frame(1)$ofile, error = function(e) NULL)
+if (is.null(.brand_source)) {
+  .brand_arg <- grep("^--file=", commandArgs(), value = TRUE)
+  if (length(.brand_arg)) .brand_source <- sub("^--file=", "", .brand_arg[[1]])
+}
+.brand_root <- if (!is.null(.brand_source)) {
+  dirname(normalizePath(.brand_source))
+} else getwd()
+.brand_env <- new.env(parent = globalenv())
+.brand_env$system.file <- function(..., package) {
+  file.path(.brand_root, "inst", ...)
+}
+sys.source(file.path(.brand_root, "R", "cttir-branding.R"), envir = .brand_env)
+
 ui <- page_fillable(
   theme = bs_theme(version = 5, bootswatch = "flatly"),
   title = "Hämatologisches Tumorzentrum – Auditor-Auswertung",
   layout_sidebar(
     sidebar = sidebar(
       width = 390,
-      h4("Auditor-App"),
+      h4(.brand_env$.cttir_brand_logo(84), "Auditor-App"),
       verbatimTextOutput("path_info"),
       actionButton("reload", "Excel neu einlesen", class = "btn-primary"),
       br(), br(),

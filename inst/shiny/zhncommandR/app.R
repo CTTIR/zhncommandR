@@ -104,10 +104,7 @@ ui <- shiny::fluidPage(
             "display:flex; flex-direction:column;",
             "align-items:center; line-height:1;"
           ),
-          shiny::tags$img(
-            src = "logo.png", height = "84", alt = "zhncommandR",
-            style = "display:block;"
-          ),
+          utils::getFromNamespace(".cttir_brand_logo", "zhncommandR")(84),
           shiny::tags$span(
             "zhncommandR",
             style = paste(

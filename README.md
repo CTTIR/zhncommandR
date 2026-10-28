@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file. -->
 
-# zhncommandR <a href="https://cttir.github.io/zhncommandR/"><picture class="cttir-readme-logo"><source class="cttir-logo-dark-source" media="(prefers-color-scheme: dark)" srcset="man/figures/logo-with-name-dark.png" /><img src="man/figures/logo-with-name.png" align="right" alt="zhncommandR hex logo" width="120" height="139" /></picture></a>
+# zhncommandR <a href="https://cttir.github.io/zhncommandR/"><picture class="cttir-readme-logo"><source class="cttir-logo-dark-source" media="(prefers-color-scheme: dark)" srcset="man/figures/logo-with-name-dark.png" /><img src="man/figures/logo-with-name.png" align="right" alt="zhncommandR logo" width="120" height="139" /></picture></a>
 
 <!-- badges: start -->
 
