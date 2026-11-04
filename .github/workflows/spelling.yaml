@@ -1,44 +1,33 @@
 name: spelling
 
 on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
   schedule:
-    # First of every month at 06:00 UTC.
     - cron: '0 6 1 * *'
   workflow_dispatch:
 
 permissions:
-  contents: write
-  pull-requests: write
+  contents: read
 
 jobs:
   spelling:
     runs-on: ubuntu-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-
     steps:
       - uses: actions/checkout@v4
-
       - uses: r-lib/actions/setup-r@v2
         with:
           use-public-rspm: true
-
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          extra-packages: any::spelling, any::devtools
-
-      - name: Update WORDLIST
+          extra-packages: any::spelling
+      - name: Check spelling against the reviewed word list
+        shell: Rscript {0}
         run: |
-          Rscript -e 'devtools::document()' || true
-          Rscript -e 'spelling::update_wordlist(confirm = FALSE)' || true
-
-      - name: Open PR if WORDLIST changed
-        uses: peter-evans/create-pull-request@v6
-        with:
-          commit-message: "chore(spelling): refresh inst/WORDLIST"
-          branch: chore/spelling-update
-          title: "chore(spelling): refresh inst/WORDLIST"
-          body: |
-            Scheduled run of `spelling::update_wordlist()` picked up new
-            valid domain terms.
-          labels: chore, automated
+          errors <- spelling::spell_check_package()
+          print(errors)
+          if (nrow(errors)) stop("Review the spelling findings before updating inst/WORDLIST")
